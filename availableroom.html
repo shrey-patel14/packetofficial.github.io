@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Room availability</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/availableroom.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/availableroom.js"></script>
+    </head>
+    <body>
+        <section class="reservation" id="reservation1">
+            <form action="" method="post">
+        <h3 style="color: white; margin-top: 25px;">Rooms Available</h3>
+        <div class="row">
+        <div class="column" id = "hotel">
+            <table>
+            <div id = "hotelName"></div>
+            <div id = "hotelRooms">
+            </div>
+                <p style="color: white; font-size: large;">
+                    King Size Room
+                </p>
+                <img id="queenroom" src="https://www.granadainnla.com/gallery-images/properties/7/2/6/Granada_Hills_ABVI_int_031.jpg">
+              <div id = "hotelAvg"></div>
+              <p style="color: white; font-size: medium;">This Room contains a single King size Bed, AC, Microwave, Bathtub, TV and more</p>
+              <p style="color: white; font-size: large;">Price : 200$ Per Night</p>
+            </table>
+            </div>
+
+            <div class="column" id="hotel1">
+                <table>
+                <p style="color: white; font-size: large;">
+                    Suite
+                </p>
+                  <img id="kingroom" src="https://www.granadainnla.com/gallery-images/properties/7/2/6/Granada_Hills_ABVI_int_0191.jpg">
+                  <p style="color: white; font-size: medium;">This Room contains a Two King size Bed, AC, Microwave, Bathtub, TV and more</p>
+                  <p style="color: white; font-size: large;">Price : 400$ Per Night</p>
+                </table>
+                </div>
+            </div>
+        </form>    
+    </section>
+
+            <section class="reservation" id="reservation">
+
+                <form action="" method="post">
+                   <h3>make a reservation</h3>
+                   <div class="flex">
+                      <div class="box">
+                         <p>check in <span>*</span></p>
+                         <input type="date" name="check_in" class="input" required>
+                      </div>
+                      <div class="box">
+                         <p>check out <span>*</span></p>
+                         <input type="date" name="check_out" class="input" required>
+                      </div>
+                      <div class="box">
+                         <p>adults <span>*</span></p>
+                         <select name="adults" class="input" required>
+                            <option value="1">1 adult</option>
+                            <option value="2">2 adults</option>
+                            <option value="3">3 adults</option>
+                            <option value="4">4 adults</option>
+                            <option value="5">5 adults</option>
+                            <option value="6">6 adults</option>
+                         </select>
+                      </div>
+                      <div class="box">
+                         <p>childs <span>*</span></p>
+                         <select name="childs" class="input" required>
+                            <option value="-">0 child</option>
+                            <option value="1">1 child</option>
+                            <option value="2">2 childs</option>
+                            <option value="3">3 childs</option>
+                            <option value="4">4 childs</option>
+                            <option value="5">5 childs</option>
+                            <option value="6">6 childs</option>
+                         </select>
+                      </div>
+                      <div class="box">
+                         <p>rooms <span>*</span></p>
+                         <select name="rooms" class="input" required>
+                            <option value="1">kingroom</option>
+                            <option value="2">Suite</option>
+                         </select>
+                      </div>
+                   </div>
+                   <button style="color: white;" class="btn1" id = "btnSubmit2"><a href="register.html">Book Now!</a></button>
+                </form>
+            </section>
+    </body>
+</html>

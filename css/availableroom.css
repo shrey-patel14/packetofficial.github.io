@@ -1,0 +1,106 @@
+body {
+   /* background-image: url("");*/
+    background-color: #2B1103;
+
+  }
+
+  .row {
+    margin-left:170px;
+    margin-right:100px;
+  }
+    
+  .column {
+    float: left;
+    width: 50%;
+    padding: 5px;
+  }
+  
+  
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 16px;
+  }
+  
+  #hotel,#hotel1 {
+    align-items: center;
+    margin-top: 40px;
+    width: 400px;
+    height: 520px;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Saira', sans-serif;
+  }
+  
+  #hotelName,#hotelName1 {
+    font-size: 50px;
+    color: #ffffff;
+  }
+  
+  #hotelRooms,#hotelRooms1 {
+    font-size: 50px;
+    color: salmon;
+  }
+  
+  #hotelAvg,#hotelAvg1 {
+    font-size: 50px;
+    color: salmon;
+  }
+  
+  #btnSubmit,#btnSubmit1 {
+    height: 40px;
+    font-size: 16px;
+    font-family: "Saira";
+    width: 300px;
+    background-color: #858585;
+    color: #ffffff;
+    border: none;
+    
+  }
+  
+
+  #kingroom{
+    height: 350px;
+    width: 350px;
+    margin: auto;
+  }
+
+  #queenroom{
+    height: 350px;
+    width: 350px;
+    margin: auto;
+  }
+
+
+  .btn1{
+    display: inline-block;
+    cursor: pointer;
+    padding: 1rem 3rem;
+    border: wheat;
+    font-size: 1.8rem;
+    color: white;
+    text-align: center;
+    text-transform: capitalize;
+    transition: .2s linear;
+    margin-top: 1rem;
+    background-color: #DCC69C;
+ }
+ 
+ .btn1:hover{
+    border-radius: 5rem;
+    color: white;
+    background-color: var(--sub-color);
+    color: var(--main-color);
+ }

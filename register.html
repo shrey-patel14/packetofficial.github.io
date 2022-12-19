@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Signup</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+        <style>
+            body{
+                background-color: #1a2718;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="mb-5"><!--mb5 is foe element spacing-->
+            <h3 class="mb-3" style="color: white;">Sign Up</h3>
+            <input type="text" placeholder="Fullname" id="nameInp" class="form-control mb-3"><!--mb3 is margin bottom class-->
+            <input type="text" placeholder="Email" id="emailInp" class="form-control mb-3">
+            <input type="text" placeholder="Username" id="userInp" class="form-control mb-3">
+            <input type="password" placeholder="Password" id="passInp" class="form-control mb-3">
+            <button type="text" id="sub_btn" class="btn btn-outline-primary mb-3 w-100">Sign Up</button><!--w100 is to occupy full space of button-->
+            <a href="login.html" class="badge badge-secondary py-1" style="color: white;">Already Have an Account?</a><!--py-1 is padding to top and bottom-->
+        </div>
+        <!--Firebase Config-->
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
+            import { getDatabase, ref, set, child, get } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+            const firebaseConfig = {
+              apiKey: "AIzaSyCCyLpdOYBt6wOwmWbMPmVdpgnwEhsD7Gs",
+              authDomain: "resort-a214c.firebaseapp.com",
+              databaseURL: "https://resort-a214c-default-rtdb.firebaseio.com",
+              projectId: "resort-a214c",
+              storageBucket: "resort-a214c.appspot.com",
+              messagingSenderId: "577361144057",
+              appId: "1:577361144057:web:9daa1fe6b639a5e10f5a28",
+              measurementId: "G-2RZ69QFRRW"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+            const db = getDatabase();
+          
+            //Refrences
+
+            const name = document.getElementById('nameInp');
+            const email = document.getElementById('emailInp');
+            const username = document.getElementById('userInp');
+            const pass = document.getElementById('passInp');
+            const submit = document.getElementById('sub_btn');
+
+            //Validation(Trough reg exp.)
+           
+            //To check the empty fields 
+            function isEmptyOrSpaces(str){
+                return str === null || str.match(/^ *$/) !== null;
+            }
+            
+            function Validation(){
+                let nameregex = /^[a-zA-Z]+$/; //any alphabets small or big any
+                let emailregex = /^[a-zA-Z0-9]+@(gmail|outlook|yahoo|icloud)\.com$/;//any number or alphabets is allowed @ is compusory and email contaning yahoo gmail outlook and icloud is used only
+                let usernameregex = /^[a-zA-Z0-9]{5,}$/;//contains 5 char min
+
+
+                if (isEmptyOrSpaces(name.value) || isEmptyOrSpaces(email.value) || isEmptyOrSpaces(username.value) || isEmptyOrSpaces(pass.value)) {
+                    alert("you cannot left anyfield empty!");
+                    return false;                   
+                }
+
+                if (!nameregex.test(name.value)){
+                    alert("The name should only contains alphabets!");
+                    return false;
+                }   
+                
+                if (!emailregex.test(email.value)) {
+                    alert("Enter Valid Email");
+                    return false;
+                }
+                
+                if (!usernameregex.test(username.value)) {
+                    alert("Username should be alphanumeric\nUsername must Contains 5 characters\nUsername cannot contain spaces");
+                    return false;
+                }
+                return true;
+            }
+
+            //Register to Firebase
+
+            function RegisterUser(){
+                if(!Validation()){
+                    return;
+                }
+                const dbRef = ref(db);
+                get(child(dbRef, "UsersList/"+ username.value)).then((snapshot)=>{
+                    if(snapshot.exists()){
+                        alert("Account already Exist!");
+                    }
+                    else{
+                        //Refrence of data which we want to put inside userlist 
+                        set(ref(db, "UsersList/"+ username.value),{
+                            fullname : name.value,
+                            email : email.value,
+                            username : username.value,
+                            password : encPass()
+                        })
+                        .then(()=>{
+                            alert("User added Successfully!");
+                        })
+                        .catch((error)=>{
+                            alert("error"+ error);
+                        })
+                    }
+                });
+            }
+            
+            //Encryption
+
+            function encPass(){
+                var pass12 = CryptoJS.AES.encrypt(pass.value, pass.value);//(PAssword, Key)
+                return pass12.toString();
+            }
+
+
+            //Assign the events
+
+            submit.addEventListener('click', RegisterUser);
+
+        </script>
+    </body>
+</html>
