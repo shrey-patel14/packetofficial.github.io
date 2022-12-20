@@ -1,6 +1,8 @@
 # Resort s2r
 Resort Website
 
+Website link - https://resorts2r.netlify.app/
+
 Refrences: 
 
 W3school - https://www.w3schools.com/html/Links to an external site.
